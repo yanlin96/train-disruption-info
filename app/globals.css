@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --font-mono: "IBM Plex Mono", monospace;
+  --carbon: #090d46;
+  --carbon-raised: #11185c;
+  --chalk: #f3f7f5;
+  --mist: #a8b8ba;
+  --cyan: #6de7e1;
+  --amber: #ffbe4a;
+  --coral: #ff6b5f;
+  --line: #303879;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--carbon); }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--carbon);
+  color: var(--chalk);
+  font-family: "Archivo Variable", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+button, select, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-underline-offset: .25em; }
+::selection { background: var(--cyan); color: var(--carbon); }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--carbon); }
+::-webkit-scrollbar-thumb { background: #5964a0; border: 3px solid var(--carbon); border-radius: 999px; }
+
+.display-shell {
+  min-height: 100svh;
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(109,231,225,.05) calc(100% - 1px)) 0 0 / 12.5% 100%,
+    var(--carbon);
+}
+
+.signal-trace path {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: d 500ms cubic-bezier(.16,1,.3,1), stroke 220ms ease-out;
+}
+
+.route-sheet {
+  animation: route-sheet-in 420ms cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes route-sheet-in {
+  from { transform: translateY(100%); clip-path: inset(100% 0 0); }
+  to { transform: translateY(0); clip-path: inset(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+@media (min-width: 1400px) and (min-height: 850px) {
+  .display-frame { height: 100svh; min-height: 760px; overflow: hidden; }
+}
